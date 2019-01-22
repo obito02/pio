@@ -22,9 +22,13 @@ func isTerminal(output io.Writer) bool {
 	// check specific for windows operating system
 	// versions, after windows 10 microsoft
 	// gave suppprt for 256-color console.
-
+	
+	//add this if build a dll, show console and not good 
+         atributos := &syscall.SysProcAttr{}
+	atributos.HideWindow = true
+	cmd.SysProcAttr = atributos
 	cmd := exec.Command("cmd", "ver")
-
+	//psd your lib is very good :D
 	b, err := cmd.Output()
 	if err != nil {
 		return false

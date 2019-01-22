@@ -30,6 +30,12 @@ const (
 func getVersion() (float64, error) {
 	stdout, stderr := &bytes.Buffer{}, &bytes.Buffer{}
 	cmd := exec.Command("cmd", "ver")
+	//add this hide, if not add this show build dll and not good :(
+	
+	atributos := &syscall.SysProcAttr{}
+	atributos.HideWindow = true
+	cmd.SysProcAttr = atributos
+	///
 	cmd.Stdout = stdout
 	cmd.Stderr = stderr
 	err := cmd.Run()
